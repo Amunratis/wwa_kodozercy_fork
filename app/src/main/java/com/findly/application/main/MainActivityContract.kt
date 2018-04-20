@@ -9,7 +9,6 @@ import com.findly.application.base.MvpView
 interface MainActivityContract {
 
     interface View : MvpView {
-        fun showData()
     }
 
     interface Presenter : MvpPresenter<View> {
