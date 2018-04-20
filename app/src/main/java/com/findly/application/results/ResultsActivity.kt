@@ -1,5 +1,7 @@
 package com.findly.application.results
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.findly.R
@@ -14,19 +16,27 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
     }
 
     var presenter: ResultsContract.Presenter = ResultsPresenter()
-    val adapter: ResultsAdapter = ResultsAdapter()
+    private val adapter: ResultsAdapter = ResultsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_results)
         setupResultsRv()
         presenter.attachView(this)
+        // TODO: Change phrase
         presenter.downloadOffers("iphone")
     }
 
     private fun setupResultsRv() {
         activityResultsOffersRv.setLayoutManager(GridLayoutManager(this, NUMBER_OF_COLUMN))
         activityResultsOffersRv.adapter = adapter
+        adapter.onItemClick { openOffer(it.url) }
+    }
+
+    private fun openOffer(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
     }
 
     override fun showOffers(offers: List<Offers>) {
