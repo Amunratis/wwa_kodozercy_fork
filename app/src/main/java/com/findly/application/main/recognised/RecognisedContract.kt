@@ -1,4 +1,4 @@
-package com.findly.application.main.recognise
+package com.findly.application.main.recognised
 
 import com.findly.application.base.MvpPresenter
 import com.findly.application.base.MvpView
@@ -7,7 +7,7 @@ import com.findly.application.base.MvpView
  * Created by Wojdor on 20.04.2018.
  */
 
-interface RecogniseContract {
+interface RecognisedContract {
 
     interface View : MvpView
 

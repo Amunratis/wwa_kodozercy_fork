@@ -1,4 +1,4 @@
-package com.findly.application.main.recognise
+package com.findly.application.main.recognised
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,12 +11,12 @@ import com.findly.application.base.BaseFragment
  * Created by Wojdor on 20.04.2018.
  */
 
-class RecogniseFragment : BaseFragment(), RecogniseContract.View {
+class RecognisedFragment : BaseFragment(), UnrecognisedContract.View {
 
-    var presenter: RecogniseContract.Presenter = RecognisePresenter()
+    var presenter: UnrecognisedContract.Presenter = UnrecognisedPresenter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_recognise, container, false)
+        return inflater.inflate(R.layout.fragment_recognised, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
