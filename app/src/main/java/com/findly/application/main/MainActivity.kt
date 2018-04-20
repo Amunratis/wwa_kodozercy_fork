@@ -1,5 +1,6 @@
 package com.findly.application.main
 
+import android.content.Intent
 import android.os.Bundle
 import com.findly.R
 import com.findly.application.base.BaseActivity
@@ -7,6 +8,7 @@ import com.findly.application.main.recognised.ProfileFragment
 import com.findly.application.main.recognised.RecognisedFragment
 import com.findly.application.main.recognised.SettingsFragment
 import com.findly.application.main.recognised.UnrecognisedFragment
+import com.findly.application.results.ResultsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), MainActivityContract.View {
@@ -24,7 +26,13 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
     private fun initListeners() {
         activityMainUnrecognisedIv.setOnClickListener { replaceFragment(UnrecognisedFragment()) }
         activityMainRecognisedIv.setOnClickListener { replaceFragment(RecognisedFragment()) }
+        activityMainCameraIv.setOnClickListener { startResultsActivity() }
         activityMainSettingsIv.setOnClickListener { replaceFragment(SettingsFragment()) }
         activityMainProfileIv.setOnClickListener { replaceFragment(ProfileFragment()) }
+    }
+
+    private fun startResultsActivity() {
+        val intent = Intent(this, ResultsActivity::class.java)
+        startActivity(intent)
     }
 }
