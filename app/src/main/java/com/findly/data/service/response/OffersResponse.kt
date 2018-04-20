@@ -8,7 +8,7 @@ import com.google.gson.annotations.Expose
 data class OffersResponse(
         @Expose val count: Number,
         @Expose val fallbackMode: FallbackMode,
-        @Expose val offers: Array<Offers>,
+        @Expose val offers: List<Offers>,
         @Expose val pageToken: PageToken,
         @Expose val searchScenarioName: String,
         @Expose val sponsoredOffers: Array<Any>

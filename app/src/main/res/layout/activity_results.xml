@@ -6,6 +6,7 @@
     tools:context="com.findly.application.main.MainActivity">
 
     <com.malinskiy.superrecyclerview.SuperRecyclerView
+        android:id="@+id/activityResultsOffersRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </android.support.constraint.ConstraintLayout>
