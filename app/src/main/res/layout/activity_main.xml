@@ -45,14 +45,14 @@
             app:layout_constraintLeft_toRightOf="@id/activityMainUnrecognisedIv" />
 
         <ImageView
-            android:id="@+id/activityMainSearchIv"
+            android:id="@+id/activityMainProfileIv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
-            app:layout_constraintRight_toLeftOf="@id/activityMainProfileIv" />
+            app:layout_constraintRight_toLeftOf="@id/activityMainSettingsIv" />
 
         <ImageView
-            android:id="@+id/activityMainProfileIv"
+            android:id="@+id/activityMainSettingsIv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"

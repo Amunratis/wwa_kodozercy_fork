@@ -7,7 +7,7 @@ import com.findly.application.base.MvpView
  * Created by Wojdor on 20.04.2018.
  */
 
-interface SearchContract {
+interface SettingsContract {
 
     interface View : MvpView
 

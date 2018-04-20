@@ -11,12 +11,12 @@ import com.findly.application.base.BaseFragment
  * Created by Wojdor on 20.04.2018.
  */
 
-class SearchFragment : BaseFragment(), SearchContract.View {
+class SettingsFragment : BaseFragment(), SettingsContract.View {
 
-    var presenter: SearchContract.Presenter = SearchPresenter()
+    var presenter: SettingsContract.Presenter = SettingsPresenter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
