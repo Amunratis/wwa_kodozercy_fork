@@ -3,11 +3,9 @@ package com.findly.application.results
 import android.os.Bundle
 import com.findly.R
 import com.findly.application.base.BaseActivity
-import com.findly.application.main.recognised.ProfileFragment
-import com.findly.application.main.recognised.RecognisedFragment
-import com.findly.application.main.recognised.SettingsFragment
-import com.findly.application.main.recognised.UnrecognisedFragment
-import kotlinx.android.synthetic.main.activity_main.*
+import com.findly.data.service.AllegroService
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class ResultsActivity : BaseActivity(), ResultsContract.View {
 
@@ -17,5 +15,9 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_results)
         presenter.attachView(this)
+        AllegroService.getApiService().getOffers("iphone")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
     }
 }
