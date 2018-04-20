@@ -3,7 +3,7 @@ package com.findly.application.main
 import android.os.Bundle
 import com.findly.R
 import com.findly.application.base.BaseActivity
-import com.findly.application.main.recognised.UnrecognisedFragment
+import com.findly.application.main.recognised.SearchFragment
 
 class MainActivity : BaseActivity(), MainActivityContract.View {
     override fun showData() {
@@ -16,6 +16,6 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         presenter.attachView(this)
-        replaceFragment(UnrecognisedFragment())
+        replaceFragment(SearchFragment())
     }
 }

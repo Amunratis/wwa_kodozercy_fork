@@ -11,7 +11,7 @@ import com.findly.application.base.BaseFragment
  * Created by Wojdor on 20.04.2018.
  */
 
-class RecognisedFragment : BaseFragment(), SearchContract.View {
+class ProfileFragment : BaseFragment(), SearchContract.View {
 
     var presenter: SearchContract.Presenter = SearchPresenter()
 
