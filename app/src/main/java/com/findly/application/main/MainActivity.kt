@@ -4,12 +4,17 @@ import android.os.Bundle
 import com.findly.R
 import com.findly.application.base.BaseActivity
 
-class MainActivity : BaseActivity(), MainContract.View {
+class MainActivity : BaseActivity(), MainActivityContract.View {
+    override fun showData() {
 
-    override val presenter: MainContract.Presenter = MainPresenter(this)
+    }
+
+    var presenter: MainActivityContract.MvpPresenter = MainActivityPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        presenter.attachView(this)
+        presenter.downloadData()
     }
 }
