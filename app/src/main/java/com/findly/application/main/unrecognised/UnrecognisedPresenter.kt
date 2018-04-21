@@ -3,9 +3,9 @@ package com.findly.application.main.recognised
 /**
  * Created by Wojdor on 20.04.2018.
  */
-class UnrecognisedPresenter : SettingsContract.Presenter {
+class UnrecognisedPresenter : UnrecognisedContract.Presenter {
 
-    override fun attachView(view: SettingsContract.View) {
+    override fun attachView(view: UnrecognisedContract.View) {
     }
 
     override fun detachView() {

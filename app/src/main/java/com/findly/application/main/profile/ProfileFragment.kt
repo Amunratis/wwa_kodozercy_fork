@@ -11,9 +11,9 @@ import com.findly.application.base.BaseFragment
  * Created by Wojdor on 20.04.2018.
  */
 
-class ProfileFragment : BaseFragment(), SettingsContract.View {
+class ProfileFragment : BaseFragment(), ProfileContract.View {
 
-    var presenter: SettingsContract.Presenter = SettingsPresenter()
+    var presenter: ProfileContract.Presenter = ProfilePresenter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)

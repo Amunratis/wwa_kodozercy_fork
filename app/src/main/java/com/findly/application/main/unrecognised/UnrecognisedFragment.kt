@@ -11,9 +11,9 @@ import com.findly.application.base.BaseFragment
  * Created by Wojdor on 20.04.2018.
  */
 
-class UnrecognisedFragment : BaseFragment(), SettingsContract.View {
+class UnrecognisedFragment : BaseFragment(), UnrecognisedContract.View {
 
-    var presenter: SettingsContract.Presenter = SettingsPresenter()
+    var presenter: UnrecognisedContract.Presenter = UnrecognisedPresenter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_recognised, container, false)
