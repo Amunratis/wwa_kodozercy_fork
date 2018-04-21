@@ -48,16 +48,16 @@
         <EditText
             android:id="@+id/activityShareDescription"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="350dp"
             android:hint="Dodaj opis ..."
             android:minHeight="40dp"
             android:minWidth="40dp"
             android:textColor="@android:color/black"
-            app:layout_constraintBottom_toTopOf="@id/activityShareImageShareTv"
+            app:layout_constraintBottom_toTopOf="@id/activityShareImageImageContainer"
             app:layout_constraintTop_toBottomOf="@+id/activityShareImageImageContainer" />
 
         <TextView
@@ -69,9 +69,9 @@
             android:padding="16dp"
             android:text="Opublikuj"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityShareDescription" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

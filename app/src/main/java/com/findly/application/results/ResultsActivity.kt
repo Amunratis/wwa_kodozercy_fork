@@ -106,7 +106,9 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
     }
 
     private fun setupSearchTet() {
-        activityResultsSearchTet.setTags(phrase)
+        var phraseSplited = phrase.split(' ')
+        activityResultsSearchTet.setTags(phraseSplited[0])
+        tags.addAll(0, phraseSplited)
     }
 
     private fun setupBackIv() {
