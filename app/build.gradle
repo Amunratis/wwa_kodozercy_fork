@@ -50,6 +50,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compile 'com.github.florent37:camerafragment:1.0.9'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.airbnb.android:lottie:2.2.5'
 }
 repositories {
     mavenCentral()

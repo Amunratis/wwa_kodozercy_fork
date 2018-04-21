@@ -19,9 +19,13 @@ class ResultsPresenter : ResultsContract.Presenter {
     }
 
     override fun downloadOffers(phrase: String) {
+        view?.switchLoading(true)
         AllegroService.getApiService().getOffers(phrase)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { view?.showOffers(it.offers) }
+                .subscribe {
+                    view?.showOffers(it.offers)
+                    view?.switchLoading(false)
+                }
     }
 }

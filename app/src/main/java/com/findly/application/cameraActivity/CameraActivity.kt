@@ -17,6 +17,7 @@ import android.view.TextureView
 import com.findly.R
 import com.findly.application.base.BaseActivity
 import com.findly.application.confirmActivity.ConfirmActivity
+import com.findly.application.view.FullScreenLoadingDialog
 import kotlinx.android.synthetic.main.activity_camera.*
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException

@@ -22,7 +22,6 @@ class UnrecognisedFragment : BaseFragment(), UnrecognisedContract.View {
     companion object {
         private const val NUMBER_OF_COLUMN = 3
     }
-
     var presenter: UnrecognisedContract.Presenter = UnrecognisedPresenter()
     private val adapter = UnrecognisedAdapter()
 

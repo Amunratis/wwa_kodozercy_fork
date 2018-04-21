@@ -11,12 +11,14 @@ import android.support.v7.widget.LinearLayoutManager
 import com.findly.R
 import com.findly.application.base.BaseActivity
 import com.findly.application.shareImage.ShareImageActivity
+import com.findly.application.view.FullScreenLoadingDialog
 import com.findly.data.service.response.Offers
 import kotlinx.android.synthetic.main.activity_results.*
 import java.io.ByteArrayOutputStream
 
 class ResultsActivity : BaseActivity(), ResultsContract.View {
     lateinit var image: Bitmap
+    lateinit var loadingDialog: FullScreenLoadingDialog
 
     companion object {
         private const val NUMBER_OF_COLUMN = 2
@@ -29,9 +31,17 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
     var tags = mutableListOf<String>()
     var phrase = ""
 
+    override fun switchLoading(isLoading: Boolean) {
+        if (isLoading)
+            loadingDialog.show()
+        else
+            loadingDialog.hide()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_results)
+        loadingDialog = FullScreenLoadingDialog.newProgressDialogInstance(this)
         handleExtras()
         setupListeners()
         setupResultsRv()

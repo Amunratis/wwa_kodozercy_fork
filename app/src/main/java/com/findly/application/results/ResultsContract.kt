@@ -11,6 +11,7 @@ interface ResultsContract {
 
     interface View : MvpView {
         fun showOffers(offers: List<Offers>)
+        fun switchLoading(isLoading: Boolean)
     }
 
     interface Presenter : MvpPresenter<View> {

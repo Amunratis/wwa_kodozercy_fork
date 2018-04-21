@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toast
 import com.findly.R
 import com.findly.application.GlideApp
 import com.findly.application.base.BaseActivity
@@ -16,6 +17,7 @@ import com.findly.application.data.googleApi.model.VisionRequestBody
 import com.findly.application.data.googleApi.model.VisionRequestFeature
 import com.findly.application.data.googleApi.model.VisionRequestImage
 import com.findly.application.results.ResultsActivity
+import com.findly.application.view.FullScreenLoadingDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_confirm.*
@@ -24,9 +26,11 @@ import java.util.*
 
 class ConfirmActivity : BaseActivity() {
     lateinit var image: Bitmap
+    lateinit var loadingDialog: FullScreenLoadingDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm)
+        loadingDialog = FullScreenLoadingDialog.newProgressDialogInstance(this)
         setupImageFromSharedIntent()
         setupLayout()
     }
@@ -48,6 +52,7 @@ class ConfirmActivity : BaseActivity() {
     }
 
     private fun uploadPictureToVisionApi() {
+        loadingDialog.show()
         VisionApiService.getApiService()
                 .getVisionResults(setUpVisionRequest(image))
                 .subscribeOn(Schedulers.io())
@@ -68,8 +73,11 @@ class ConfirmActivity : BaseActivity() {
                                 putStringArrayListExtra("results", webDetectionResponses as ArrayList<String>)
                                 putExtra("image", image.createImageFromBitmap())
                             }
+                            loadingDialog.hide()
                             startActivity(intent)
                         }, {
+                    loadingDialog.hide()
+                    Toast.makeText(this, "Wystąpił błąd, spróbuj ponownie", Toast.LENGTH_LONG)
                 })
     }
 
