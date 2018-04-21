@@ -2,6 +2,8 @@ package com.findly.application.postDetail
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.findly.R
 import com.findly.application.GlideApp
@@ -18,7 +20,24 @@ class PostDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_details)
         post = (intent.getSerializableExtra("post") as Post)
+        with(activityPostDetailsCommentsRv)
+        {
+            layoutManager = LinearLayoutManager(this@PostDetailsActivity, RecyclerView.VERTICAL, false)
+            adapter = PostDetailsCommentsAdapter()
+        }
+        Database.getPost(post.key) {
+            updateComments(post)
+        }
         setupLayout()
+    }
+
+    private fun updateComments(post: Post) {
+        (activityPostDetailsCommentsRv.adapter as? PostDetailsCommentsAdapter)?.updateComments(
+                post.comments.map {
+                    it.value
+                }
+        )
+
     }
 
     private fun setupLayout() {

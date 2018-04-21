@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/itemComentAuctionContainer"
+        layout="@layout/item_auction_snippet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:visibility="gone" />
+
+    <com.findly.application.base.SquareImageView
+        android:id="@+id/itemComentAuctionImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/itemComentAuctionHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="Buty męskie nightgazer roz.43"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@+id/itemAuctionSnippetImageIv" />
+
+    <TextView
+        android:id="@+id/itemComentAuctionPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="159zł"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/itemAuctionSnippetImageIv" />
+
+
+    <TextView
+        android:id="@+id/itemCommentUsernameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username:"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/itemCommentContentTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="komentarz"
+        android:textColor="@android:color/black"
+        app:layout_constraintLeft_toRightOf="@+id/itemCommentUsernameTv" />
+</android.support.constraint.ConstraintLayout>

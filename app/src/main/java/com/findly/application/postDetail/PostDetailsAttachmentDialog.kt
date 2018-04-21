@@ -78,7 +78,7 @@ class PostDetailsAttachmentDialog : DialogFragment() {
     }
 
     private fun setupErrorLayout() {
-        itemAuctionSnippetContainer.hide()
+        dialogAttachmentAuctionContainer.hide()
         itemAuctionSnippetWrongAuctionTv.show()
 
     }
@@ -92,7 +92,7 @@ class PostDetailsAttachmentDialog : DialogFragment() {
             itemAuctionSnippetPriceTv.text = """${offerResponse.prices.buyNowPrice}0 zł"""
         else
             itemAuctionSnippetPriceTv.text = """${offerResponse.prices.bidPrice}0 zł"""
-        itemAuctionSnippetContainer.show()
+        dialogAttachmentAuctionContainer.show()
     }
 
     private fun getAuctionId(auctionString: String): String {

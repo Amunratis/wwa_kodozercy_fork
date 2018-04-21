@@ -13,4 +13,6 @@ class OfferResponse(
         @SerializedName("buyNow")
         var isBuyNow: Boolean,
         @SerializedName("prices")
-        var prices: OfferPrices)
+        var prices: OfferPrices,
+        @SerializedName("id")
+        var offerId: String)
