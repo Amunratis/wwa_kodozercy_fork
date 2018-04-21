@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.findly.application.main.MainActivity">
+
+    <mabbas007.tagsedittext.TagsEditText
+        android:id="@+id/activityResultsSearchTet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tagsBackground="@drawable/search_tag"
+        app:tagsCloseImageRight="@drawable/ic_close"
+        app:tagsTextColor="@android:color/white" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activityResultsTagsRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/activityResultsOffersRv"
+        app:layout_constraintTop_toBottomOf="@id/activityResultsSearchTet" />
+
+    <com.malinskiy.superrecyclerview.SuperRecyclerView
+        android:id="@+id/activityResultsOffersRv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activityResultsTagsRv" />
+</android.support.constraint.ConstraintLayout>
