@@ -17,6 +17,11 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         presenter.attachView(this)
+
+
+
+
+
         replaceFragment(UnrecognisedFragment())
         initListeners()
     }
