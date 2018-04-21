@@ -18,8 +18,8 @@ class ResultsViewHolder(itemView: View) : CommonViewHolder<Offers>(itemView) {
     override fun onBind(model: Offers) {
         GlideApp.with(itemView.itemOfferPhotoIv).load(model.images.component1().url).into(itemView.itemOfferPhotoIv)
         itemView.itemOfferNameTv.text = model.name
-        with(model.prices.withDelivery) {
-            itemView.itemOfferPriceTv.text = amount + " " + currency
+        with(model.prices) {
+            itemView.itemOfferPriceTv.text = "${this?.current?.amount} ${this?.current?.currency}"
         }
     }
 }

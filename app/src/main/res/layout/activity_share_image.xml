@@ -3,62 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context="com.findly.application.shareImage.ShareImageActivity"
+    android:fitsSystemWindows="true"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="0dp"
-    android:fillViewport="true">
+    tools:layout_editor_absoluteY="0dp">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/activity_share_ConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_height="wrap_content">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/activity_share_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/activity_share_ImageView"
+        <FrameLayout
+            android:id="@+id/activityShareImageImageContainer"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:minHeight="40dp"
-            android:minWidth="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_share_back"
-            app:layout_constraintVertical_bias="0.062" />
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/activityShareBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|top"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/activityShareImageView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activityShareBack"
+                app:layout_constraintVertical_bias="0.062" />
+        </FrameLayout>
 
         <EditText
-            android:id="@+id/activity_share_description"
+            android:id="@+id/activityShareDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginBottom="264dp"
             android:layout_marginTop="8dp"
             android:minHeight="40dp"
             android:minWidth="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_share_ImageView"
-            app:layout_constraintVertical_bias="0.02">
+            app:layout_constraintTop_toBottomOf="@+id/activityShareImageImageContainer">
 
         </EditText>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/activity_share_add_fab"
+            android:id="@+id/activityShareAddFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_share_description" />
-
-        <!-- Have whatever children you want inside -->
-
+            app:layout_constraintTop_toBottomOf="@+id/activityShareDescription" />
     </android.support.constraint.ConstraintLayout>
-
 </ScrollView>

@@ -1,6 +1,9 @@
 package com.findly.application.results
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -8,10 +11,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import com.findly.R
 import com.findly.application.base.BaseActivity
+import com.findly.application.shareImage.ShareImageActivity
 import com.findly.data.service.response.Offers
 import kotlinx.android.synthetic.main.activity_results.*
+import java.io.ByteArrayOutputStream
 
 class ResultsActivity : BaseActivity(), ResultsContract.View {
+    lateinit var image: Bitmap
 
     companion object {
         private const val NUMBER_OF_COLUMN = 2
@@ -28,6 +34,7 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_results)
         handleExtras()
+        setupListeners()
         setupResultsRv()
         setupTagsRv()
         setupSearchTet()
@@ -35,10 +42,25 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         presenter.downloadOffers(activityResultsSearchTet.tags.toString())
     }
 
+    private fun setupListeners() {
+        activityResultsShareBtn.setOnClickListener { startShareActivity() }
+    }
+
+    private fun startShareActivity() {
+        Intent(this, ShareImageActivity::class.java).apply {
+            putExtra("image", image.createImageFromBitmap())
+        }.run {
+                    startActivity(this)
+                }
+    }
+
     private fun handleExtras() {
         // TODO: Handle Bundle!!!
-        tags = mutableListOf("test0", "test1", "test2", "test3", "test4", "test5", "test6", "test7")
-        phrase = "iphone"
+        tags = intent.getStringArrayListExtra("results").toMutableList()
+        intent.getStringExtra("image")?.let {
+            image = getImageBitmap()
+        }
+        phrase = tags.component1()
     }
 
     private fun setupResultsRv() {
@@ -75,5 +97,25 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
 
     override fun showOffers(offers: List<Offers>) {
         resultsAdapter.updateOffers(offers)
+    }
+
+    private fun getImageBitmap() = BitmapFactory.decodeStream(this
+            .openFileInput(intent.getStringExtra("image")))
+
+    fun Bitmap.createImageFromBitmap(): String? {
+        var fileName: String? = "myImage"
+        try {
+            with(ByteArrayOutputStream()) {
+                this@createImageFromBitmap.compress(Bitmap.CompressFormat.JPEG, 100, this)
+                openFileOutput(fileName, Context.MODE_PRIVATE).run {
+                    write(this@with.toByteArray())
+                    close()
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            fileName = null
+        }
+        return fileName
     }
 }

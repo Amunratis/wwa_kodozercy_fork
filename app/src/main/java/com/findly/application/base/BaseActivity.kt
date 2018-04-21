@@ -2,9 +2,9 @@ package com.findly.application.base
 
 import android.app.FragmentManager
 import android.app.FragmentTransaction
-import android.support.v7.app.ActionBar
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import android.view.WindowManager
 import com.findly.R
 
 /**
@@ -20,8 +20,8 @@ abstract class BaseActivity : AppCompatActivity() {
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
         transaction.commitAllowingStateLoss()
     }
-
-    fun getSupportActionBarsd() : ActionBar? {
-        return supportActionBar
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }

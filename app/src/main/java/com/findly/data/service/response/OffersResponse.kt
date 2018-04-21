@@ -72,7 +72,7 @@ data class Shipping(
 
 data class Images(@Expose val url: String)
 
-data class LowestShippingCost(@Expose val amount: String, @Expose val currency: String)
+data class LowestShippingCost(@Expose val amount: String = "", @Expose val currency: String)
 
 data class Parameters(
         @Expose val id: String,
