@@ -27,7 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".application.cameraActivity.CameraActivity" />
+        <activity
+            android:name=".application.cameraActivity.CameraActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".application.confirmActivity.ConfirmActivity"
             android:label="@string/title_activity_confirm"
@@ -50,7 +52,8 @@
 
         <activity
             android:name=".application.results.ResultsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".application.postDetail.PostDetailsActivity"></activity>
     </application>
 </manifest>

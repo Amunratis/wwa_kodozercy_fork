@@ -19,7 +19,9 @@ class ResultsViewHolder(itemView: View) : CommonViewHolder<Offers>(itemView) {
         GlideApp.with(itemView.itemOfferPhotoIv).load(model.images.component1().url).into(itemView.itemOfferPhotoIv)
         itemView.itemOfferNameTv.text = model.name
         with(model.prices) {
-            itemView.itemOfferPriceTv.text = "${this?.current?.amount} ${this?.current?.currency}"
+            val price = current?.amount ?: withDelivery?.amount
+            val currency = current?.currency ?: withDelivery?.currency
+            itemView.itemOfferPriceTv.text = "${price} ${currency}"
         }
     }
 }

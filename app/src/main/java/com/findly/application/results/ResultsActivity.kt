@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
 import com.findly.R
 import com.findly.application.base.BaseActivity
 import com.findly.application.shareImage.ShareImageActivity
@@ -38,6 +37,7 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         setupResultsRv()
         setupTagsRv()
         setupSearchTet()
+        setupBackIv()
         presenter.attachView(this)
         presenter.downloadOffers(activityResultsSearchTet.tags.toString())
     }
@@ -49,13 +49,10 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
     private fun startShareActivity() {
         Intent(this, ShareImageActivity::class.java).apply {
             putExtra("image", image.createImageFromBitmap())
-        }.run {
-                    startActivity(this)
-                }
+        }.run { startActivity(this) }
     }
 
     private fun handleExtras() {
-        // TODO: Handle Bundle!!!
         tags = intent.getStringArrayListExtra("results").toMutableList()
         intent.getStringExtra("image")?.let {
             image = getImageBitmap()
@@ -79,11 +76,18 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         activityResultsTagsRv.layoutManager = layoutManager
         activityResultsTagsRv.adapter = tagsAdapter
-        LinearSnapHelper().attachToRecyclerView(activityResultsTagsRv)
         tagsAdapter.updateTags(tags)
         tagsAdapter.onItemClick { tag ->
             deleteTagFromTagsRv(tag)
+            addTag(tag)
         }
+    }
+
+    private fun addTag(tag: String) {
+        val tags = activityResultsSearchTet.tags.toTypedArray().toMutableList()
+        tags.add(tag)
+        activityResultsSearchTet.setTags(tags.toTypedArray())
+        presenter.downloadOffers(activityResultsSearchTet.tags.toString())
     }
 
     private fun deleteTagFromTagsRv(tag: String) {
@@ -93,6 +97,10 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
 
     private fun setupSearchTet() {
         activityResultsSearchTet.setTags(phrase)
+    }
+
+    private fun setupBackIv() {
+        activityResultsBackIv.setOnClickListener { onBackPressed() }
     }
 
     override fun showOffers(offers: List<Offers>) {
