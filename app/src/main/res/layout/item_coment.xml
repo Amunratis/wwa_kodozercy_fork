@@ -2,7 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="16dp">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/itemComentAuctionContainer"
@@ -16,30 +18,38 @@
         android:id="@+id/itemComentAuctionImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemCommentUsernameTv" />
 
     <TextView
         android:id="@+id/itemComentAuctionHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:ellipsize="end"
         android:gravity="center_vertical"
         android:text="Buty męskie nightgazer roz.43"
         android:textColor="@android:color/black"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/itemAuctionSnippetImageIv" />
+        app:layout_constraintBottom_toTopOf="@+id/itemComentAuctionPrice"
+        app:layout_constraintLeft_toRightOf="@id/itemComentAuctionImage"
+        app:layout_constraintTop_toBottomOf="@id/itemCommentContentTv" />
 
     <TextView
         android:id="@+id/itemComentAuctionPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:ellipsize="marquee"
         android:text="159zł"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/itemAuctionSnippetImageIv" />
-
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/itemCommentUsernameTv"
@@ -53,7 +63,9 @@
         android:id="@+id/itemCommentContentTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:text="komentarz"
         android:textColor="@android:color/black"
-        app:layout_constraintLeft_toRightOf="@+id/itemCommentUsernameTv" />
+        app:layout_constraintLeft_toRightOf="@+id/itemCommentUsernameTv"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
