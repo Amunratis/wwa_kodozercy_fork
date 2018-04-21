@@ -13,19 +13,12 @@
         app:layout_constraintBottom_toTopOf="@id/activityMainToolbarCl"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/activityMainCameraIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="@id/activityMainToolbarCl"
-        app:layout_constraintLeft_toLeftOf="@id/activityMainToolbarCl"
-        app:layout_constraintRight_toRightOf="@id/activityMainToolbarCl" />
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/activityMainToolbarCl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
@@ -34,7 +27,9 @@
             android:id="@+id/activityMainUnrecognisedIv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
+            android:layout_marginLeft="32dp"
+            android:padding="8dp"
+            android:src="@drawable/str_gl"
             app:layout_constraintLeft_toLeftOf="parent" />
 
 
@@ -42,7 +37,19 @@
             android:id="@+id/activityMainProfileIv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
+            android:layout_marginRight="32dp"
+            android:padding="8dp"
+            android:src="@drawable/profil"
             app:layout_constraintRight_toRightOf="parent" />
     </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/activityMainCameraIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:src="@drawable/camera_icon"
+        app:layout_constraintBottom_toBottomOf="@id/activityMainToolbarCl"
+        app:layout_constraintLeft_toLeftOf="@id/activityMainToolbarCl"
+        app:layout_constraintRight_toRightOf="@id/activityMainToolbarCl" />
 </android.support.constraint.ConstraintLayout>
