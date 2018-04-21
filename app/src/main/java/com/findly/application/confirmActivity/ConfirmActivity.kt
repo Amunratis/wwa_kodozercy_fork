@@ -1,5 +1,6 @@
 package com.findly.application.confirmActivity
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -7,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.findly.R
 import com.findly.application.GlideApp
 import com.findly.application.data.googleApi.VisionApiService
@@ -15,9 +15,12 @@ import com.findly.application.data.googleApi.model.VisionRequest
 import com.findly.application.data.googleApi.model.VisionRequestBody
 import com.findly.application.data.googleApi.model.VisionRequestFeature
 import com.findly.application.data.googleApi.model.VisionRequestImage
+import com.findly.application.results.ResultsActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_confirm.*
+import java.io.ByteArrayOutputStream
+import java.util.*
 
 
 class ConfirmActivity : AppCompatActivity() {
@@ -51,12 +54,24 @@ class ConfirmActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {
-                            Log.e("działa", "tak")
-                        },
-                        {
+                            val webDetectionResponses = emptyList<String>().toMutableList()
+                            it.responses.forEach {
+                                it.webDetection?.bestGuessedLabels?.forEach { bestGuessed ->
+                                    webDetectionResponses.add(bestGuessed.label)
+                                }
+                                it.webDetection?.webEntities?.forEach {
+                                    webDetectionResponses.add(it.description)
+                                }
+                            }
+                            var intent = Intent(this, ResultsActivity::class.java)
+                            intent.apply {
+                                putStringArrayListExtra("results", webDetectionResponses as ArrayList<String>)
+                                putExtra("image", image.createImageFromBitmap())
+                            }
+                            startActivity(intent)
+                        }, {
 
-                        }
-                )
+                })
     }
 
     private fun getImageBitmap() = BitmapFactory.decodeStream(this
@@ -65,6 +80,23 @@ class ConfirmActivity : AppCompatActivity() {
     private fun setUpVisionRequest(bitmap: Bitmap): VisionRequestBody {
         return VisionRequestBody(mutableListOf(VisionRequest(VisionRequestImage(bitmap)
                 , mutableListOf(VisionRequestFeature("WEB_DETECTION")))))
+    }
+
+    fun Bitmap.createImageFromBitmap(): String? {
+        var fileName: String? = "myImage"
+        try {
+            with(ByteArrayOutputStream()) {
+                this@createImageFromBitmap.compress(Bitmap.CompressFormat.JPEG, 100, this)
+                openFileOutput(fileName, Context.MODE_PRIVATE).run {
+                    write(this@with.toByteArray())
+                    close()
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            fileName = null
+        }
+        return fileName
     }
 
 }
