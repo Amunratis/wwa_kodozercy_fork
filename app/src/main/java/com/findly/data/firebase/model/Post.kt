@@ -8,7 +8,7 @@ import java.io.Serializable
 class Post : Serializable {
     var key: String = ""
     var imageUrl: String = ""
-    var comments: MutableList<Comment> = mutableListOf()
+    var comments: Map<String, Comment> = emptyMap()
     var userName: String = ""
     var description: String = ""
 }

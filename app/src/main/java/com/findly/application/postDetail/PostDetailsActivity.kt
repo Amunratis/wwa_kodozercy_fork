@@ -2,9 +2,13 @@ package com.findly.application.postDetail
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.findly.R
 import com.findly.application.GlideApp
+import com.findly.data.firebase.Database
+import com.findly.data.firebase.model.Comment
 import com.findly.data.firebase.model.Post
+import com.google.android.gms.tasks.OnCompleteListener
 import kotlinx.android.synthetic.main.activity_post_details.*
 
 class PostDetailsActivity : AppCompatActivity() {
@@ -27,7 +31,13 @@ class PostDetailsActivity : AppCompatActivity() {
     }
 
     private fun addComment() {
-
+        Database.addComment(Comment().apply {
+            userName = "Patryk"
+            idAuction = offerId
+            isAccepted = false
+        }, post.key, OnCompleteListener {
+            Log.e("dodano", "komentarz")
+        })
     }
 
     private fun startAttachmentDialog() {
