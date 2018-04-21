@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     android:fitsSystemWindows="true"
     tools:context="com.findly.application.main.MainActivity">
 
@@ -33,6 +34,7 @@
     <FrameLayout
         android:id="@+id/activityMainContainerFl"
         android:layout_width="match_parent"
+        android:background="@android:color/white"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/activityMainToolbarCl"
         app:layout_constraintTop_toBottomOf="@id/activityMainTopToolbarCl" />

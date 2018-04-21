@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.findly.application.main.MainActivity">
 
     <android.support.constraint.ConstraintLayout
@@ -13,6 +14,7 @@
         android:background="@android:color/white">
 
         <ImageView
+            android:id="@+id/activityResultsBackIv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -42,6 +44,7 @@
         android:id="@+id/activityResultsSearchTet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/activityMainTopToolbarCl"
         app:tagsBackground="@drawable/search_tag"
         app:tagsCloseImageRight="@drawable/ic_close"
@@ -58,6 +61,7 @@
         android:id="@+id/activityResultsOffersRv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activityResultsTagsRv" />
     <Button

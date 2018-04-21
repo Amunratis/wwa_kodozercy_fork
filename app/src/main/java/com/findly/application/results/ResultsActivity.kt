@@ -38,6 +38,7 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         setupResultsRv()
         setupTagsRv()
         setupSearchTet()
+        setupBackIv()
         presenter.attachView(this)
         presenter.downloadOffers(activityResultsSearchTet.tags.toString())
     }
@@ -49,13 +50,10 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
     private fun startShareActivity() {
         Intent(this, ShareImageActivity::class.java).apply {
             putExtra("image", image.createImageFromBitmap())
-        }.run {
-                    startActivity(this)
-                }
+        }.run { startActivity(this) }
     }
 
     private fun handleExtras() {
-        // TODO: Handle Bundle!!!
         tags = intent.getStringArrayListExtra("results").toMutableList()
         intent.getStringExtra("image")?.let {
             image = getImageBitmap()
@@ -83,7 +81,14 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         tagsAdapter.updateTags(tags)
         tagsAdapter.onItemClick { tag ->
             deleteTagFromTagsRv(tag)
+            addTag(tag)
         }
+    }
+
+    private fun addTag(tag: String) {
+        val tags = activityResultsSearchTet.tags.toTypedArray().toMutableList()
+        tags.add(tag)
+        activityResultsSearchTet.setTags(tags.toTypedArray())
     }
 
     private fun deleteTagFromTagsRv(tag: String) {
@@ -93,6 +98,10 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
 
     private fun setupSearchTet() {
         activityResultsSearchTet.setTags(phrase)
+    }
+
+    private fun setupBackIv() {
+        activityResultsBackIv.setOnClickListener { onBackPressed() }
     }
 
     override fun showOffers(offers: List<Offers>) {

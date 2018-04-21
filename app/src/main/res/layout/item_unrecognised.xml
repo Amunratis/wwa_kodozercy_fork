@@ -5,8 +5,9 @@
 
     <com.findly.application.view.SquareImageView
         android:id="@+id/itemUnrecognisedPhotoIv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="124dp"
+        android:layout_height="124dp"
         android:layout_margin="8dp"
+        android:padding="1dp"
         android:scaleType="centerCrop" />
 </android.support.constraint.ConstraintLayout>
