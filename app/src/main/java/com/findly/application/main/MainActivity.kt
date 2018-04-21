@@ -20,7 +20,6 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
         replaceFragment(UnrecognisedFragment())
         activityMainUnrecognisedIv.setImageResource(R.drawable.str_gl_act)
         activityMainProfileIv.setImageResource(R.drawable.profil)
-
         initListeners()
     }
 
