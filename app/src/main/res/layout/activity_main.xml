@@ -17,6 +17,7 @@
         <ImageView
             android:layout_width="134dp"
             android:layout_height="wrap_content"
+            android:paddingTop="20dp"
             android:src="@drawable/ic_logo"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
@@ -24,6 +25,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="24dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="16dp"
             android:src="@drawable/ic_more"
             app:layout_constraintBottom_toBottomOf="@id/activityMainTopToolbarCl"
@@ -42,7 +44,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/activityMainToolbarCl"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@android:color/white"
         android:paddingBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,9 +76,9 @@
 
     <ImageView
         android:id="@+id/activityMainCameraIv"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:paddingBottom="8dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
         android:src="@drawable/camera_icon"
         app:layout_constraintBottom_toBottomOf="@id/activityMainToolbarCl"
         app:layout_constraintLeft_toLeftOf="@id/activityMainToolbarCl"
