@@ -19,6 +19,7 @@ object Database {
 
     fun addPost(post: Post, onCompleteListener: OnCompleteListener<Void>) {
         val key = database.child("posts").push().key
+        post.key = key
         database.child("posts").child(key).setValue(post).addOnCompleteListener(
                 onCompleteListener
         )
@@ -60,5 +61,16 @@ object Database {
             post?.let { posts.add(it) }
         }
         return posts
+    }
+
+    fun getPost(key: String, callback: (Post?) -> Unit) {
+        database.child("posts").child(key).addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(dataSnapshot: DatabaseError?) {
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                callback(dataSnapshot?.getValue(Post::class.java))
+            }
+        })
     }
 }

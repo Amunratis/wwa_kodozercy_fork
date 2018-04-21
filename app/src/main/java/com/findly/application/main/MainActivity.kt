@@ -10,8 +10,6 @@ import com.findly.R
 import com.findly.application.base.BaseActivity
 import com.findly.application.cameraActivity.CameraActivity
 import com.findly.application.main.recognised.ProfileFragment
-import com.findly.application.main.recognised.RecognisedFragment
-import com.findly.application.main.recognised.SettingsFragment
 import com.findly.application.main.recognised.UnrecognisedFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -44,9 +42,7 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
 
     private fun initListeners() {
         activityMainUnrecognisedIv.setOnClickListener { replaceFragment(UnrecognisedFragment()) }
-        activityMainRecognisedIv.setOnClickListener { replaceFragment(RecognisedFragment()) }
         activityMainCameraIv.setOnClickListener { startCameraActivity() }
-        activityMainSettingsIv.setOnClickListener { replaceFragment(SettingsFragment()) }
         activityMainProfileIv.setOnClickListener { replaceFragment(ProfileFragment()) }
     }
 }
