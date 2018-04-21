@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.findly.R
 import com.findly.application.GlideApp
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_share_image.*
+import java.io.ByteArrayOutputStream
+
 
 class ShareImageActivity : AppCompatActivity() {
     lateinit var image: Bitmap
@@ -19,6 +22,19 @@ class ShareImageActivity : AppCompatActivity() {
     }
 
     private fun uploadImage() {
+        with(ByteArrayOutputStream()) {
+            image.compress(Bitmap.CompressFormat.JPEG, 100, this)
+            FirebaseStorage.getInstance("gs://hackaton-4a09c.appspot.com")
+                    .reference.child("images/${image.hashCode()}$")
+                    .putBytes(this.toByteArray())
+                    .addOnCompleteListener {
+                        it.result.downloadUrl
+                    }
+                    .addOnFailureListener {
+                        it.printStackTrace()
+                    }
+        }
+
 
     }
 
