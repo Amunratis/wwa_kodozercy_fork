@@ -89,6 +89,7 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         val tags = activityResultsSearchTet.tags.toTypedArray().toMutableList()
         tags.add(tag)
         activityResultsSearchTet.setTags(tags.toTypedArray())
+        presenter.downloadOffers(activityResultsSearchTet.tags.toString())
     }
 
     private fun deleteTagFromTagsRv(tag: String) {

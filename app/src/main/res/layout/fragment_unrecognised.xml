@@ -2,7 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/fragmentUnrecognisedSearchCl"
@@ -30,6 +31,7 @@
             android:inputType="text"
             android:maxLines="1"
             android:padding="8dp"
+            android:textColorHint="@color/hint_color"
             app:layout_constraintLeft_toRightOf="@id/fragmentUnrecognisedSearchIv"
             app:layout_constraintRight_toRightOf="parent" />
 

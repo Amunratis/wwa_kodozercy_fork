@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import com.findly.R
 import com.findly.application.GlideApp
+import com.findly.application.base.BaseActivity
 import com.findly.application.data.googleApi.VisionApiService
 import com.findly.application.data.googleApi.model.VisionRequest
 import com.findly.application.data.googleApi.model.VisionRequestBody
@@ -23,7 +24,7 @@ import java.io.ByteArrayOutputStream
 import java.util.*
 
 
-class ConfirmActivity : AppCompatActivity() {
+class ConfirmActivity : BaseActivity() {
     lateinit var image: Bitmap
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
