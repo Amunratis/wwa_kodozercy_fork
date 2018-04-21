@@ -38,26 +38,6 @@ object Database {
         })
     }
 
-    fun uploadImage(bitmap: Bitmap, completeListener: OnCompleteListener<UploadTask.TaskSnapshot>) {
-        with(ByteArrayOutputStream()) {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, this)
-            FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener {
-                FirebaseStorage.getInstance("gs://hackaton-4a09c.appspot.com")
-                        .reference.child("images/${bitmap.hashCode()}.jpg")
-                        .putBytes(this.toByteArray())
-                        .addOnCompleteListener {
-                            completeListener
-                        }
-                        .addOnFailureListener {
-                            it.printStackTrace()
-                        }
-            }
-
-        }
-
-
-    }
-
     private fun getPosts(dataSnapshot: DataSnapshot?): MutableList<Post> {
         val posts = mutableListOf<Post>()
         dataSnapshot?.children?.forEach {
