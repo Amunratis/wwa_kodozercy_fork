@@ -18,13 +18,24 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
         setContentView(R.layout.activity_main)
         presenter.attachView(this)
         replaceFragment(UnrecognisedFragment())
+        activityMainUnrecognisedIv.setImageResource(R.drawable.str_gl_act)
+        activityMainProfileIv.setImageResource(R.drawable.profil)
+
         initListeners()
     }
 
     private fun initListeners() {
-        activityMainUnrecognisedIv.setOnClickListener { replaceFragment(UnrecognisedFragment()) }
+        activityMainUnrecognisedIv.setOnClickListener {
+            replaceFragment(UnrecognisedFragment())
+            activityMainUnrecognisedIv.setImageResource(R.drawable.str_gl_act)
+            activityMainProfileIv.setImageResource(R.drawable.profil)
+        }
         activityMainCameraIv.setOnClickListener { startResultsActivity() }
-        activityMainProfileIv.setOnClickListener { replaceFragment(ProfileFragment()) }
+        activityMainProfileIv.setOnClickListener {
+            replaceFragment(ProfileFragment())
+            activityMainProfileIv.setImageResource(R.drawable.profil_act)
+            activityMainUnrecognisedIv.setImageResource(R.drawable.str_gl)
+        }
     }
 
     private fun startResultsActivity() {
