@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.v7.app.AppCompatActivity
 import com.findly.R
 import com.findly.application.GlideApp
 import com.findly.application.base.BaseActivity
@@ -23,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_confirm.*
 import java.io.ByteArrayOutputStream
 import java.util.*
 
-
 class ConfirmActivity : BaseActivity() {
     lateinit var image: Bitmap
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +34,7 @@ class ConfirmActivity : BaseActivity() {
     private fun setupLayout() {
         GlideApp.with(this).load(image).into(activityConfirmResult)
         activityConfirmResultSend.setOnClickListener { uploadPictureToVisionApi() }
+        activityConfirmCloseIv.setOnClickListener { onBackPressed() }
     }
 
     private fun setupImageFromSharedIntent() {
@@ -71,7 +70,6 @@ class ConfirmActivity : BaseActivity() {
                             }
                             startActivity(intent)
                         }, {
-
                 })
     }
 
@@ -99,5 +97,4 @@ class ConfirmActivity : BaseActivity() {
         }
         return fileName
     }
-
 }
