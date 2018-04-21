@@ -7,13 +7,14 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.findly.R
 import com.findly.application.GlideApp
+import com.findly.application.base.BaseActivity
 import com.findly.data.firebase.Database
 import com.findly.data.firebase.model.Comment
 import com.findly.data.firebase.model.Post
 import com.google.android.gms.tasks.OnCompleteListener
 import kotlinx.android.synthetic.main.activity_post_details.*
 
-class PostDetailsActivity : AppCompatActivity() {
+class PostDetailsActivity : BaseActivity() {
     var offerId: String = ""
     lateinit var post: Post
     override fun onCreate(savedInstanceState: Bundle?) {
