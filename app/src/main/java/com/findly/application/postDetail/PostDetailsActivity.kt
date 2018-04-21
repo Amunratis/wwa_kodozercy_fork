@@ -8,6 +8,7 @@ import com.findly.data.firebase.model.Post
 import kotlinx.android.synthetic.main.activity_post_details.*
 
 class PostDetailsActivity : AppCompatActivity() {
+    var offerId: String = ""
     lateinit var post: Post
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +22,11 @@ class PostDetailsActivity : AppCompatActivity() {
         activityPostDetailsUsername.text = post.userName
         activityPostDetailsDescription.text = post.description
         activityPostDetailsAttachment.setOnClickListener { startAttachmentDialog() }
+        activityPostDetailsAddComment.setOnClickListener { addComment() }
+
+    }
+
+    private fun addComment() {
 
     }
 
@@ -28,4 +34,5 @@ class PostDetailsActivity : AppCompatActivity() {
         var dialog = PostDetailsAttachmentDialog.newInstance()
         dialog.show(fragmentManager, dialog.javaClass.name)
     }
+
 }

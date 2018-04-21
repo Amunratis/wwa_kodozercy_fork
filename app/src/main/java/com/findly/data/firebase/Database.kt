@@ -1,16 +1,12 @@
 package com.findly.data.firebase
 
-import android.graphics.Bitmap
+import com.findly.data.firebase.model.Comment
 import com.findly.data.firebase.model.Post
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
-import java.io.ByteArrayOutputStream
 
 /**
  * Created by Wojdor on 21.04.2018.
@@ -26,6 +22,9 @@ object Database {
         )
     }
 
+    fun addComment(comment: Comment, postKey: String, onCompleteListener: OnCompleteListener<Void>) {
+        database.child("posts").child(postKey).setValue(comment).addOnCompleteListener(onCompleteListener)
+    }
 
     fun getPosts(callback: (MutableList<Post>) -> Unit) {
         database.child("posts").addValueEventListener(object : ValueEventListener {

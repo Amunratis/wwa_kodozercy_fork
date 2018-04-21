@@ -30,6 +30,7 @@ class PostDetailsAttachmentDialog : DialogFragment() {
         }
     }
 
+    lateinit var offerId: String
     var textChangeSubject: PublishSubject<String> = PublishSubject.create()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -67,6 +68,7 @@ class PostDetailsAttachmentDialog : DialogFragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {
+                            offerId = auctionId
                             setupAuctionLayout(it)
                         },
                         {
@@ -82,6 +84,7 @@ class PostDetailsAttachmentDialog : DialogFragment() {
     }
 
     private fun setupAuctionLayout(offerResponse: OfferResponse) {
+
         itemAuctionSnippetWrongAuctionTv.hide()
         itemAuctionSnippetHeaderTv.text = offerResponse.name
         GlideApp.with(itemAuctionSnippetImageIv).load(offerResponse.gallery.component1().smallImageUrl).into(itemAuctionSnippetImageIv)
@@ -119,5 +122,10 @@ class PostDetailsAttachmentDialog : DialogFragment() {
             }
 
         })
+        dialogAttachmentAcceptBtn.setOnClickListener {
+            (activity as PostDetailsActivity).offerId = offerId
+            dismiss()
+        }
+        dialogAttachmentDismissBtn.setOnClickListener { dismiss() }
     }
 }
