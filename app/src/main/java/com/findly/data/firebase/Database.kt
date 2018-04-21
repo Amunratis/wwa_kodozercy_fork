@@ -3,6 +3,7 @@ package com.findly.data.firebase
 import android.graphics.Bitmap
 import com.findly.data.firebase.model.Post
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -40,15 +41,18 @@ object Database {
     fun uploadImage(bitmap: Bitmap, completeListener: OnCompleteListener<UploadTask.TaskSnapshot>) {
         with(ByteArrayOutputStream()) {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, this)
-            FirebaseStorage.getInstance("gs://hackaton-4a09c.appspot.com")
-                    .reference.child("images/${bitmap.hashCode()}.jpg")
-                    .putBytes(this.toByteArray())
-                    .addOnCompleteListener {
-                        completeListener
-                    }
-                    .addOnFailureListener {
-                        it.printStackTrace()
-                    }
+            FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener {
+                FirebaseStorage.getInstance("gs://hackaton-4a09c.appspot.com")
+                        .reference.child("images/${bitmap.hashCode()}.jpg")
+                        .putBytes(this.toByteArray())
+                        .addOnCompleteListener {
+                            completeListener
+                        }
+                        .addOnFailureListener {
+                            it.printStackTrace()
+                        }
+            }
+
         }
 
 
