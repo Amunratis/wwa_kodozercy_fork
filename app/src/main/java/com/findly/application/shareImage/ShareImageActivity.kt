@@ -9,6 +9,7 @@ import android.util.Log
 import com.findly.R
 import com.findly.application.GlideApp
 import com.findly.application.main.MainActivity
+import com.findly.application.view.FullScreenLoadingDialog
 import com.findly.data.firebase.Database
 import com.findly.data.firebase.model.Post
 import com.google.android.gms.tasks.OnCompleteListener
@@ -20,15 +21,18 @@ import java.io.ByteArrayOutputStream
 
 class ShareImageActivity : AppCompatActivity() {
     lateinit var image: Bitmap
+    lateinit var loadingDialog: FullScreenLoadingDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share_image)
+        loadingDialog = FullScreenLoadingDialog.newProgressDialogInstance(this)
         readExtrasData()
         setupLayout()
         activityShareImageShareTv.setOnClickListener { sendPost() }
     }
 
     private fun sendPost() {
+        loadingDialog.show()
         FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener {
             uploadImage(image, getCompleteListener())
         }.addOnFailureListener {
@@ -60,6 +64,7 @@ class ShareImageActivity : AppCompatActivity() {
     }
 
     private fun openMain() {
+        loadingDialog.hide()
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
