@@ -11,6 +11,16 @@
         android:layout_height="match_parent" />
 
     <ImageView
+        android:id="@+id/activityCameraBackIv"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="top|left"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/ic_arrow_back_kopia_3"
+        android:tint="@android:color/white" />
+
+    <ImageView
         android:id="@+id/activityCameraTakePictureBtn"
         android:layout_width="75dp"
         android:layout_height="75dp"
@@ -27,6 +37,4 @@
         android:layout_margin="30dp"
         android:background="@drawable/gallery_icon"
         android:text="Gallery" />
-
-
 </FrameLayout>

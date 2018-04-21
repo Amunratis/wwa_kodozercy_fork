@@ -22,7 +22,6 @@ import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 import java.util.*
 
-
 class CameraActivity : BaseActivity(), CameraActivityContract.View {
 
     companion object {
@@ -70,7 +69,7 @@ class CameraActivity : BaseActivity(), CameraActivityContract.View {
             requestPermissions()
             return true
         }
-        manager.openCamera(manager.cameraIdList[0], stateCallback, null)
+        manager.openCamera(manager.cameraIdList.component1(), stateCallback, null)
         return false
     }
 
@@ -137,7 +136,6 @@ class CameraActivity : BaseActivity(), CameraActivityContract.View {
                         } catch (e: CameraAccessException) {
                             e.printStackTrace()
                         }
-
                     }
 
                     override fun onConfigureFailed(cameraCaptureSession: CameraCaptureSession) {}
@@ -171,11 +169,12 @@ class CameraActivity : BaseActivity(), CameraActivityContract.View {
     private fun setupLayout() {
         activityCameraTakePictureBtn.setOnClickListener { takePicture() }
         activityCameraGaleryPickBtn.setOnClickListener { pickPicture() }
+        activityCameraBackIv.setOnClickListener { onBackPressed() }
     }
 
     private fun pickPicture() {
-        startActivityForResult(Intent(Intent.ACTION_PICK).apply { type = "image/*" }
-                , 200)
+        startActivityForResult(Intent(Intent.ACTION_PICK).apply { type = "image/*" },
+                200)
     }
 
     private fun isPermissionGranted(): Boolean =
@@ -218,5 +217,4 @@ class CameraActivity : BaseActivity(), CameraActivityContract.View {
             }
         }
     }
-
 }
