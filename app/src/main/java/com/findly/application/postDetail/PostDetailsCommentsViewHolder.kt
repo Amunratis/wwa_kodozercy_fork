@@ -43,7 +43,7 @@ class PostDetailsCommentsViewHolder(itemView: View) : CommonViewHolder<Comment>(
 
     private fun setupAuctionSnippetLayout(offerResponse: OfferResponse?) {
         with(itemView) {
-            itemComentAuctionContainer.setOnClickListener {
+            setOnClickListener {
                 openOffer("http://allegro.pl/ShowItem2.php?item=${offerResponse?.offerId}")
             }
             itemComentAuctionHeader.text = offerResponse?.name
