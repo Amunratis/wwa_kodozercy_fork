@@ -23,6 +23,8 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
         presenter.attachView(this)
         askPermissions()
         replaceFragment(UnrecognisedFragment())
+        activityMainUnrecognisedIv.setImageResource(R.drawable.str_gl_act)
+        activityMainProfileIv.setImageResource(R.drawable.profil)
         initListeners()
     }
 
@@ -41,8 +43,16 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
     }
 
     private fun initListeners() {
-        activityMainUnrecognisedIv.setOnClickListener { replaceFragment(UnrecognisedFragment()) }
+        activityMainUnrecognisedIv.setOnClickListener {
+            replaceFragment(UnrecognisedFragment())
+            activityMainUnrecognisedIv.setImageResource(R.drawable.str_gl_act)
+            activityMainProfileIv.setImageResource(R.drawable.profil)
+        }
         activityMainCameraIv.setOnClickListener { startCameraActivity() }
-        activityMainProfileIv.setOnClickListener { replaceFragment(ProfileFragment()) }
+        activityMainProfileIv.setOnClickListener {
+            replaceFragment(ProfileFragment())
+            activityMainProfileIv.setImageResource(R.drawable.profil_act)
+            activityMainUnrecognisedIv.setImageResource(R.drawable.str_gl)
+        }
     }
 }

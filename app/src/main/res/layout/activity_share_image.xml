@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     tools:context="com.findly.application.shareImage.ShareImageActivity"
+    android:fitsSystemWindows="true"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp">
 
