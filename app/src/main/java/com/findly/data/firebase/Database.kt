@@ -23,7 +23,11 @@ object Database {
     }
 
     fun addComment(comment: Comment, postKey: String, onCompleteListener: OnCompleteListener<Void>) {
-        database.child("posts").child(postKey).setValue(comment).addOnCompleteListener(onCompleteListener)
+        val key = database.child("posts").child(postKey).child("comments").push().key
+        database.child("posts").child(postKey).child("comments").child(key).setValue(comment).addOnCompleteListener(
+                onCompleteListener
+        )
+
     }
 
     fun getPosts(callback: (MutableList<Post>) -> Unit) {
