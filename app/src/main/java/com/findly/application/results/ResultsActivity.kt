@@ -12,8 +12,6 @@ import android.support.v7.widget.LinearSnapHelper
 import com.findly.R
 import com.findly.application.base.BaseActivity
 import com.findly.application.shareImage.ShareImageActivity
-import com.findly.data.firebase.Database
-import com.findly.data.firebase.model.Post
 import com.findly.data.service.response.Offers
 import kotlinx.android.synthetic.main.activity_results.*
 import java.io.ByteArrayOutputStream
@@ -42,8 +40,6 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         setupSearchTet()
         presenter.attachView(this)
         presenter.downloadOffers(activityResultsSearchTet.tags.toString())
-        Database.addPost(Post("test", mutableListOf(), "test"))
-
     }
 
     private fun setupListeners() {
