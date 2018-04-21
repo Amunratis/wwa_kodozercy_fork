@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "426955879447",
+    "firebase_url": "https://hackaton-4a09c.firebaseio.com",
+    "project_id": "hackaton-4a09c",
+    "storage_bucket": "hackaton-4a09c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426955879447:android:936708bce3baca55",
+        "android_client_info": {
+          "package_name": "com.findly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426955879447-v7qb9klh8u51tm2ht9jdiooin4g38m25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-AVMnlMx7lPSW-7eR_EGtuR6Xsiv1TI0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
