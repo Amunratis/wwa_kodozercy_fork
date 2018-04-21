@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.view.View
 import com.findly.R
 import com.findly.application.base.BaseActivity
 import com.findly.application.cameraActivity.CameraActivity
@@ -47,12 +48,14 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
             replaceFragment(UnrecognisedFragment())
             activityMainUnrecognisedIv.setImageResource(R.drawable.str_gl_act)
             activityMainProfileIv.setImageResource(R.drawable.profil)
+            activityMainTopToolbarCl.visibility = View.VISIBLE
         }
         activityMainCameraIv.setOnClickListener { startCameraActivity() }
         activityMainProfileIv.setOnClickListener {
             replaceFragment(ProfileFragment())
             activityMainProfileIv.setImageResource(R.drawable.profil_act)
             activityMainUnrecognisedIv.setImageResource(R.drawable.str_gl)
+            activityMainTopToolbarCl.visibility = View.GONE
         }
     }
 }
