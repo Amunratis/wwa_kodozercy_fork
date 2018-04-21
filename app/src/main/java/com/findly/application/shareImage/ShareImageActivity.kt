@@ -6,7 +6,11 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.findly.R
 import com.findly.application.GlideApp
+import com.findly.data.firebase.Database
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_share_image.*
 import java.io.ByteArrayOutputStream
 
@@ -18,25 +22,10 @@ class ShareImageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_share_image)
         readExtrasData()
         setupLayout()
-        uploadImage()
+        Database.uploadImage(image, getCompleteListener())
     }
 
-    private fun uploadImage() {
-        with(ByteArrayOutputStream()) {
-            image.compress(Bitmap.CompressFormat.JPEG, 100, this)
-            FirebaseStorage.getInstance("gs://hackaton-4a09c.appspot.com")
-                    .reference.child("images/${image.hashCode()}$")
-                    .putBytes(this.toByteArray())
-                    .addOnCompleteListener {
-                        it.result.downloadUrl
-                    }
-                    .addOnFailureListener {
-                        it.printStackTrace()
-                    }
-        }
-
-
-    }
+    private fun getCompleteListener() = OnCompleteListener<UploadTask.TaskSnapshot> { taskSnapshot -> taskSnapshot.result.downloadUrl }
 
     private fun setupLayout() {
         GlideApp.with(this).load(image).into(activityShareImageView)
