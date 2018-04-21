@@ -32,7 +32,7 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         setupTagsRv()
         setupSearchTet()
         presenter.attachView(this)
-        presenter.downloadOffers(phrase)
+        presenter.downloadOffers(activityResultsSearchTet.tags.toString())
     }
 
     private fun handleExtras() {
@@ -58,6 +58,14 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         activityResultsTagsRv.layoutManager = layoutManager
         activityResultsTagsRv.adapter = tagsAdapter
         LinearSnapHelper().attachToRecyclerView(activityResultsTagsRv)
+        tagsAdapter.updateTags(tags)
+        tagsAdapter.onItemClick { tag ->
+            deleteTagFromTagsRv(tag)
+        }
+    }
+
+    private fun deleteTagFromTagsRv(tag: String) {
+        tags = tags.filterNot { tag == it }.toMutableList()
         tagsAdapter.updateTags(tags)
     }
 
