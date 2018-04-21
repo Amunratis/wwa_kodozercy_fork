@@ -8,10 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.findly.R
+import com.findly.application.GlideApp
+import com.findly.application.view.hide
+import com.findly.application.view.show
+import com.findly.data.service.AllegroService
+import com.findly.data.service.response.OfferResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.dialog_attachment.*
+import kotlinx.android.synthetic.main.item_auction_snippet.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -46,7 +52,7 @@ class PostDetailsAttachmentDialog : DialogFragment() {
     private fun subscribeToDataChanged() {
         textChangeSubject.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .debounce(50, TimeUnit.MILLISECONDS)
+                .debounce(1, TimeUnit.SECONDS)
                 .subscribe(
                         {
                             downloadOfferForId(getAuctionId(it))
@@ -55,6 +61,35 @@ class PostDetailsAttachmentDialog : DialogFragment() {
     }
 
     private fun downloadOfferForId(auctionId: String) {
+        AllegroService.getMobileApiService()
+                .getOffer(auctionId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            setupAuctionLayout(it)
+                        },
+                        {
+                            setupErrorLayout()
+                        }
+                )
+    }
+
+    private fun setupErrorLayout() {
+        itemAuctionSnippetContainer.hide()
+        itemAuctionSnippetWrongAuctionTv.show()
+
+    }
+
+    private fun setupAuctionLayout(offerResponse: OfferResponse) {
+        itemAuctionSnippetWrongAuctionTv.hide()
+        itemAuctionSnippetHeaderTv.text = offerResponse.name
+        GlideApp.with(itemAuctionSnippetImageIv).load(offerResponse.gallery.component1().smallImageUrl).into(itemAuctionSnippetImageIv)
+        if (offerResponse.isBuyNow)
+            itemAuctionSnippetPriceTv.text = """${offerResponse.prices.buyNowPrice}0 zł"""
+        else
+            itemAuctionSnippetPriceTv.text = """${offerResponse.prices.bidPrice}0 zł"""
+        itemAuctionSnippetContainer.show()
     }
 
     private fun getAuctionId(auctionString: String): String {
@@ -64,7 +99,11 @@ class PostDetailsAttachmentDialog : DialogFragment() {
     }
 
     private fun parseAuctionString(auctionString: String): String {
-        return auctionString.removeRange(0, 0)
+        return if (auctionString.contains("item".toRegex()))
+            auctionString.substring(auctionString.indexOf("item=", 0, true) + "item=".length)
+        else
+            auctionString.substring(auctionString.lastIndexOf('i') + 1, auctionString.lastIndexOf('.'))
+
     }
 
     private fun setupListeners() {

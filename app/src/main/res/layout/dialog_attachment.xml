@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:minHeight="250dp"
+    android:minWidth="350dp"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#2d2d2d"
-        android:text="Załącznik do aukcji"
+        android:paddingTop="5dp"
+        android:text="Załącznik do komentarza"
         android:textAlignment="center"
         android:textColor="@android:color/white" />
 
@@ -18,27 +22,50 @@
         android:id="@+id/dialogAttachmentAuctionUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:hint="Numer aukcji lub adres url"
-        android:lines="1"
         android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textColorHint="#2d2d2d"
         android:textSize="14sp"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/dialogAttachmentDismissBtn"
+    <include
+        android:id="@+id/itemAuctionSnippetContainer"
+        layout="@layout/item_auction_snippet"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/itemAuctionSnippetWrongAuctionTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Anuluj"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_gravity="center_horizontal"
+        android:text="Podany odnośnik do aukcji jest błędny"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone" />
 
-    <Button
-        android:id="@+id/dialogAttachmentAcceptBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zatwierdź"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialogAttachmentDismissBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anuluj"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Button
+            android:id="@+id/dialogAttachmentAcceptBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zatwierdź"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
