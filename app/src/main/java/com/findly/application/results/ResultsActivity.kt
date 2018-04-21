@@ -21,14 +21,24 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
     private val resultsAdapter: ResultsAdapter = ResultsAdapter()
     private val tagsAdapter: TagsAdapter = TagsAdapter()
 
+    var tags = mutableListOf<String>()
+    var phrase = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_results)
+        handleExtras()
         setupResultsRv()
         setupTagsRv()
+        setupSearchTet()
         presenter.attachView(this)
-        // TODO: Change phrase
-        presenter.downloadOffers("iphone")
+        presenter.downloadOffers(phrase)
+    }
+
+    private fun handleExtras() {
+        // TODO: Handle Bundle!!!
+        tags = mutableListOf("test0", "test1", "test2", "test3", "test4", "test5", "test6", "test7")
+        phrase = "iphone"
     }
 
     private fun setupResultsRv() {
@@ -48,8 +58,11 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         activityResultsTagsRv.layoutManager = layoutManager
         activityResultsTagsRv.adapter = tagsAdapter
         LinearSnapHelper().attachToRecyclerView(activityResultsTagsRv)
-        // TODO: Change tag list
-        tagsAdapter.updateTags(listOf("test0", "test1", "test2", "test3", "test4", "test5", "test6", "test7"))
+        tagsAdapter.updateTags(tags)
+    }
+
+    private fun setupSearchTet() {
+        activityResultsSearchTet.setTags(phrase)
     }
 
     override fun showOffers(offers: List<Offers>) {
