@@ -1,5 +1,6 @@
 package com.findly.application.shareImage
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.findly.R
 import com.findly.application.GlideApp
+import com.findly.application.main.MainActivity
 import com.findly.data.firebase.Database
 import com.findly.data.firebase.model.Post
 import com.google.android.gms.tasks.OnCompleteListener
@@ -16,7 +18,6 @@ import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_share_image.*
 import java.io.ByteArrayOutputStream
 
-
 class ShareImageActivity : AppCompatActivity() {
     lateinit var image: Bitmap
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +25,7 @@ class ShareImageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_share_image)
         readExtrasData()
         setupLayout()
-        activityShareAddFab.setOnClickListener { sendPost() }
+        activityShareImageShareTv.setOnClickListener { sendPost() }
     }
 
     private fun sendPost() {
@@ -48,8 +49,6 @@ class ShareImageActivity : AppCompatActivity() {
                         it.printStackTrace()
                     }
         }
-
-
     }
 
     private fun getCompleteListener() = OnCompleteListener<UploadTask.TaskSnapshot> { taskSnapshot ->
@@ -57,9 +56,14 @@ class ShareImageActivity : AppCompatActivity() {
             userName = "patryk"
             description = activityShareDescription.text.toString()
             imageUrl = taskSnapshot.result.downloadUrl.toString()
-        }, OnCompleteListener {})
+        }, OnCompleteListener { openMain() })
     }
 
+    private fun openMain() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+    }
 
     private fun setupLayout() {
         GlideApp.with(this).load(image).into(activityShareImageView)
