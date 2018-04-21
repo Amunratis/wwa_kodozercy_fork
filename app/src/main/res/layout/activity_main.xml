@@ -42,7 +42,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/activityMainToolbarCl"
         android:layout_width="match_parent"
-        android:layout_height="85dp"
+        android:layout_height="60dp"
         android:background="@android:color/white"
         android:paddingBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,8 +74,8 @@
 
     <ImageView
         android:id="@+id/activityMainCameraIv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:paddingBottom="8dp"
         android:src="@drawable/camera_icon"
         app:layout_constraintBottom_toBottomOf="@id/activityMainToolbarCl"
