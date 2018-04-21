@@ -17,16 +17,17 @@ import java.io.ByteArrayOutputStream
 object Database {
     private val database = FirebaseDatabase.getInstance().reference
 
-    fun addPost(post: Post) {
+    fun addPost(post: Post, onCompleteListener: OnCompleteListener<Void>) {
         val key = database.child("posts").push().key
-        database.child("posts").child(key).setValue(post)
+        database.child("posts").child(key).setValue(post).addOnCompleteListener(
+                onCompleteListener
+        )
     }
 
 
     fun getPosts(callback: (MutableList<Post>) -> Unit) {
         database.child("posts").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError?) {
-
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
@@ -39,7 +40,7 @@ object Database {
         with(ByteArrayOutputStream()) {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, this)
             FirebaseStorage.getInstance("gs://hackaton-4a09c.appspot.com")
-                    .reference.child("images/${bitmap.hashCode()}$")
+                    .reference.child("images/${bitmap.hashCode()}.jpg")
                     .putBytes(this.toByteArray())
                     .addOnCompleteListener {
                         completeListener

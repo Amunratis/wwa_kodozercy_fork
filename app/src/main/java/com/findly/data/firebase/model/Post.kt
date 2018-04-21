@@ -7,4 +7,5 @@ class Post {
     var imageUrl: String = ""
     var comments: MutableList<Comment> = mutableListOf()
     var userName: String = ""
+    var description: String = ""
 }
