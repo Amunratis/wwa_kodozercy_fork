@@ -4,15 +4,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/fragmentUnrecognisedSearchEt"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/fragmentUnrecognisedSearchCl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/fragmentUnrecognisedSearchIv"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@id/fragmentUnrecognisedSearchCl"
+            app:layout_constraintTop_toTopOf="@id/fragmentUnrecognisedSearchCl" />
+
+        <EditText
+            android:id="@+id/fragmentUnrecognisedSearchEt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:inputType="text"
+            android:background="@android:color/transparent"
+            android:hint="@string/search"
+            android:padding="8dp"
+            app:layout_constraintLeft_toRightOf="@id/fragmentUnrecognisedSearchIv"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintTop_toBottomOf="@id/fragmentUnrecognisedSearchEt"/>
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragmentUnrecognisedPostsRv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentUnrecognisedSearchEt" />
+        app:layout_constraintTop_toBottomOf="@id/fragmentUnrecognisedSearchCl" />
 </android.support.constraint.ConstraintLayout>
