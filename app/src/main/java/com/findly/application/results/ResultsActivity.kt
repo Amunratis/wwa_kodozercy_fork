@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
 import com.findly.R
 import com.findly.application.base.BaseActivity
 import com.findly.application.shareImage.ShareImageActivity
@@ -77,7 +76,6 @@ class ResultsActivity : BaseActivity(), ResultsContract.View {
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         activityResultsTagsRv.layoutManager = layoutManager
         activityResultsTagsRv.adapter = tagsAdapter
-        LinearSnapHelper().attachToRecyclerView(activityResultsTagsRv)
         tagsAdapter.updateTags(tags)
         tagsAdapter.onItemClick { tag ->
             deleteTagFromTagsRv(tag)
