@@ -13,12 +13,12 @@
 
     <ImageView
         android:id="@+id/activityConfirmResultSend"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_gravity="center|right|bottom"
         android:text="CONFIRM"
         android:scaleType="fitCenter"
-        android:layout_margin="18dp"
+        android:layout_margin="22dp"
 
         android:background="@drawable/send_icon"/>
 </android.support.design.widget.CoordinatorLayout>
